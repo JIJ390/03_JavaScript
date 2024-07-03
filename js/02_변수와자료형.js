@@ -190,7 +190,7 @@ function typeCheck() {
   /* undefined : 정의되지 않은 변수 / 값 대입 X 또는 존재 X 변수 */
   let undef; 
   console.log("undef : ", undef, typeof undef);
-            // 문자열 :   저장된 값  자료형
+          // 문자열 :   저장된 값  자료형
 
   /* string : "" 또는 '' 내부에 작성된 값 */
   /* ex) "홍길동" == '홍길동' */
