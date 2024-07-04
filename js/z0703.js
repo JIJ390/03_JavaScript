@@ -13,12 +13,12 @@ function plus(){
 }
 
 function  plus2(){
-  var v2 = Number(in2.value);
+  var v1 = Number(in1.value);
 
   const aaa = plus();
 
-
-  result2.innerText = aaa + v2;
+  result2.innerText = aaa + v1;
+  return aaa + v1;
 }
 
 function  plus3(){
