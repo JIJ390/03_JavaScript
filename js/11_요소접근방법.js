@@ -111,8 +111,6 @@ function cssTest1() {
   // 자식 중 div 요소를 모두 선택해 얻어옴
   const divs = document.querySelectorAll('[target-div = css-div] > div');
 
-  
-
   for (let i = 0; i < divs.length; i++) {
     divs[i].style.height = '50%';
     divs[i].style.display = "flex";
@@ -129,3 +127,53 @@ function cssTest1() {
   const test1 = document.querySelector('[target-div = css-div] > div');
   test1.style.fontSize = '30px';
 }
+
+
+/** 카카오톡 채팅 구현 */
+function readValue() {
+  // 채팅이 출력되는 화면
+  const bg = document.querySelector('#chattingBackground');
+  // 채팅이 입력되는 input
+  const input = document.querySelector('#userInput');
+
+
+  /* 
+    입력된 값이 없을 경우
+     1) 진짜 작성 X
+     2) 작성된 내용이 모두 공백 문자(띄어쓰기, 탭, 엔터)
+
+     *문자열.trim() : 문자 앞 뒤(좌우) 공백을 제거는 JS 제공 함수
+  */
+  
+  if (input.value.trim().length === 0) {   // 사용자 편의성
+    alert('채팅 내용을 입력해 주세요');
+    input.value = ''; // 입력된 공백 제거
+    input.focus();    // input 에 다시 포커스 맞춤 (커서 활성화)
+    return;
+  }
+
+ /* 입력된 값을 읽어와 채팅 화면에 누적 */
+  bg.innerHTML += `<p><span>${input.value}</span></p>`;
+  input.value = '';   // 사용자 편의성
+  input.focus(); 
+  /* 화면이 400px로 고정 되어있는데 채팅이 그 이상으로 쌓여서 아래로 빠져나옴 */
+
+  // bg.scrollHeight   : 스크롤 되어 가려진 부분까지 포함한 전체 높이
+  // bg.scrollTop      : 스크롤 위쪽 부분의 현재 위치
+  // bg.scrollTop = 값 : 스크롤 위쪽 부분을 '값' 부분으로 이동
+  //                     (값이 스크롤 높이를 초과하면 제일 아래로 이동)
+  bg.scrollTop = bg.scrollHeight; 
+  // 스크롤의 위쪽 부분을 현재 스크롤의 전체 높이에 위치 시켜라
+  // -> 스크롤의 가장 아래쪽으로(채팅 화면 가장 아래쪽으로) 내려가게 된다
+}
+
+/* #userInput 에서 키보드로 값 입력 중
+  'Enter' 입력이 감지되는 경우 readValue() 함수 호출
+ */
+document.querySelector('#userInput').addEventListener('keydown',function(e){
+  // 콘솔에서 입력된 키 확인
+  //console.log(e.key);
+  if (e.key === 'Enter') {    // 엔터 누를 시(감지되는 경우) readValue() 함수 호출
+    readValue();
+  }
+});
