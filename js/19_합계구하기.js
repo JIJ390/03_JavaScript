@@ -19,9 +19,6 @@ const container = document.querySelector('.container');
 
 addBtn.addEventListener('click', () => {
 
-
-  
-
   // 추가 버튼 클릭 시
   // div, input, span 요소를 생성해서 알맞게 조립 후
   // .container 의 마지막 자식으로 추가
