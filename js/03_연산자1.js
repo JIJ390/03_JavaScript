@@ -45,6 +45,7 @@ function minusFn(){
   const v2 = Number(number2.value);
 
   calcResult.innerText = v1 - v2;
+  // calcResult.innerText = number1.value - number2.value;
 }
 
 /** 곱하기 함수 */
